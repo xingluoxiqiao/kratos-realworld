@@ -3,7 +3,7 @@ syntax = "proto3";
 package helloworld.v1;
 
 import "google/api/annotations.proto";
-
+import "google/protobuf/timestamp.proto";
 option go_package = "realworld/api/helloworld/v1;v1";
 option java_multiple_files = true;
 option java_package = "dev.kratos.api.helloworld.v1";
@@ -138,6 +138,7 @@ message AddCommentRequest{
         string body = 1;
     }
     Comment comment = 1;
+    string slug = 2;
 }
 message DeleteArticleRequest{
   string slug = 1;
@@ -218,6 +219,7 @@ message UserReply {
   }
   User user = 1;
 }
+
 message ProfileReply {
   message Profile {
       string username = 1;
@@ -227,6 +229,13 @@ message ProfileReply {
   }
   Profile profile = 1;
 }
+message Author {
+  string username = 1;
+  string bio = 2;
+  string image = 3;
+  bool following = 4;
+}
+
 message SingleArticleReply {
   message Author {
       string username = 1;
@@ -240,8 +249,8 @@ message SingleArticleReply {
       string description = 3;
       string body = 4;
       repeated string tagList = 5;
-      string createdAt = 6;
-      string updatedAt = 7;
+      google.protobuf.Timestamp  createdAt = 6;
+      google.protobuf.Timestamp  updatedAt = 7;
       bool favorited = 8;
       uint32 favoritesCount = 9;
       Author author = 10;
@@ -261,8 +270,8 @@ message MultipleArticlesReply {
       string description = 3;
       string body = 4;
       repeated string tagList = 5;
-      string createdAt = 6;
-      string updatedAt = 7;
+      google.protobuf.Timestamp  createdAt = 6;
+      google.protobuf.Timestamp  updatedAt = 7;
       bool favorited = 8;
       uint32 favoritesCount = 9;
       Author author = 10;
@@ -270,6 +279,7 @@ message MultipleArticlesReply {
   repeated Articles articles = 1;
   uint32 articlesCount = 2;
 }
+
 message SingleCommentReply {
   message Author {
       string username = 1;
@@ -279,8 +289,8 @@ message SingleCommentReply {
   }
   message Comment {
       uint32 id = 1;
-      string createdAt = 2;
-      string updatedAt = 3;
+      google.protobuf.Timestamp  createdAt = 2;
+      google.protobuf.Timestamp  updatedAt = 3;
       string body = 4;
       Author author = 5;
   }
@@ -295,8 +305,8 @@ message MultipleCommentsReply {
   }
   message Comments {
       uint32 id = 1;
-      string createdAt = 2;
-      string updatedAt = 3;
+      google.protobuf.Timestamp  createdAt = 2;
+      google.protobuf.Timestamp  updatedAt = 3;
       string body = 4;
       Author author = 5;
   }
@@ -304,4 +314,30 @@ message MultipleCommentsReply {
 }
 message ListOfTags {
   repeated string tags = 1;
+}
+
+message Comment {
+  uint32 id = 1;
+  google.protobuf.Timestamp  createdAt = 2;
+  google.protobuf.Timestamp  updatedAt = 3;
+  string body = 4;
+  Author author = 5;
+}
+message Article {
+  string slug = 1;
+  string title = 2;
+  string description = 3;
+  string body = 4;
+  repeated string tagList = 5;
+  google.protobuf.Timestamp createdAt = 6;
+  google.protobuf.Timestamp updatedAt = 7;
+  bool favorited = 8;
+  uint32 favoritesCount = 9;
+  Author author = 10;
+}
+message Profile {
+  string username = 1;
+  string bio = 2;
+  string image = 3;
+  bool following = 4;
 }

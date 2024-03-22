@@ -381,6 +381,8 @@ components:
             properties:
                 comment:
                     $ref: '#/components/schemas/helloworld.v1.AddCommentRequest_Comment'
+                slug:
+                    type: string
         helloworld.v1.AddCommentRequest_Comment:
             type: object
             properties:
@@ -460,8 +462,10 @@ components:
                         type: string
                 createdAt:
                     type: string
+                    format: date-time
                 updatedAt:
                     type: string
+                    format: date-time
                 favorited:
                     type: boolean
                 favoritesCount:
@@ -506,8 +510,10 @@ components:
                     format: uint32
                 createdAt:
                     type: string
+                    format: date-time
                 updatedAt:
                     type: string
+                    format: date-time
                 body:
                     type: string
                 author:
@@ -564,8 +570,10 @@ components:
                         type: string
                 createdAt:
                     type: string
+                    format: date-time
                 updatedAt:
                     type: string
+                    format: date-time
                 favorited:
                     type: boolean
                 favoritesCount:
@@ -608,8 +616,10 @@ components:
                     format: uint32
                 createdAt:
                     type: string
+                    format: date-time
                 updatedAt:
                     type: string
+                    format: date-time
                 body:
                     type: string
                 author:
